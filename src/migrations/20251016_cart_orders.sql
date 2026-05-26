@@ -1,0 +1,22 @@
+-- Add cart-style columns to orders and create order_items table
+
+ALTER TABLE orders
+  ADD COLUMN IF NOT EXISTS shipping_address TEXT NULL,
+  ADD COLUMN IF NOT EXISTS customer_email VARCHAR(255) NULL,
+  ADD COLUMN IF NOT EXISTS customer_phone VARCHAR(50) NULL,
+  ADD COLUMN IF NOT EXISTS currency VARCHAR(10) NULL DEFAULT 'GHS',
+  ADD COLUMN IF NOT EXISTS total_amount DECIMAL(12,2) NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS delivery_fee DECIMAL(12,2) NULL DEFAULT 0;
+
+CREATE TABLE IF NOT EXISTS order_items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  order_id INT NOT NULL,
+  product_id INT NOT NULL,
+  quantity INT NOT NULL,
+  unit_price DECIMAL(12,2) NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_order_items_order FOREIGN KEY (order_id) REFERENCES orders(id)
+);
+
+

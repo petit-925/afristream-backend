@@ -1,0 +1,77 @@
+// Standardized Error Types and Interfaces
+
+export enum ErrorCode {
+  // Authentication & Authorization
+  UNAUTHORIZED = 'UNAUTHORIZED',
+  FORBIDDEN = 'FORBIDDEN',
+  INVALID_TOKEN = 'INVALID_TOKEN',
+  TOKEN_EXPIRED = 'TOKEN_EXPIRED',
+  
+  // Validation
+  VALIDATION_ERROR = 'VALIDATION_ERROR',
+  INVALID_INPUT = 'INVALID_INPUT',
+  MISSING_REQUIRED_FIELD = 'MISSING_REQUIRED_FIELD',
+  
+  // Resource Management
+  NOT_FOUND = 'NOT_FOUND',
+  ALREADY_EXISTS = 'ALREADY_EXISTS',
+  CONFLICT = 'CONFLICT',
+  
+  // Database
+  DATABASE_ERROR = 'DATABASE_ERROR',
+  CONNECTION_ERROR = 'CONNECTION_ERROR',
+  
+  // File Operations
+  FILE_NOT_FOUND = 'FILE_NOT_FOUND',
+  FILE_TOO_LARGE = 'FILE_TOO_LARGE',
+  INVALID_FILE_TYPE = 'INVALID_FILE_TYPE',
+  UPLOAD_FAILED = 'UPLOAD_FAILED',
+  
+  // External Services
+  EXTERNAL_SERVICE_ERROR = 'EXTERNAL_SERVICE_ERROR',
+  PAYMENT_FAILED = 'PAYMENT_FAILED',
+  
+  // General
+  INTERNAL_ERROR = 'INTERNAL_ERROR',
+  SERVICE_UNAVAILABLE = 'SERVICE_UNAVAILABLE',
+  RATE_LIMIT_EXCEEDED = 'RATE_LIMIT_EXCEEDED',
+
+
+  // Custom Application Errors  BAD_REQUEST = 'BAD_REQUEST',
+  BAD_REQUEST = 'BAD_REQUEST',
+  TIMEOUT = 'TIMEOUT',
+  NOT_IMPLEMENTED = 'NOT_IMPLEMENTED',
+  DEPENDENCY_FAILURE = 'DEPENDENCY_FAILURE',
+  CONFIGURATION_ERROR = 'CONFIGURATION_ERROR',
+  DEPRECATION = 'DEPRECATION',
+  AUTHENTICATION_FAILED = 'AUTHENTICATION_FAILED',
+  AUTHORIZATION_FAILED = 'AUTHORIZATION_FAILED',
+  RESOURCE_LOCKED = 'RESOURCE_LOCKED',
+  QUOTA_EXCEEDED = 'QUOTA_EXCEEDED',
+  OPERATION_CANCELED = 'OPERATION_CANCELED',
+  DATA_INTEGRITY_VIOLATION = 'DATA_INTEGRITY_VIOLATION',
+  UNSUPPORTED_MEDIA_TYPE = 'UNSUPPORTED_MEDIA_TYPE',  
+  
+}
+
+export interface ApiError {
+  code: ErrorCode;
+  message: string;
+  details?: any;
+  timestamp: string;
+  path?: string;
+  method?: string;
+  statusCode: number;
+}
+
+export interface ValidationError {
+  field: string;
+  message: string;
+  value?: any;
+}
+
+export interface ErrorResponse {
+  success: false;
+  error: ApiError;
+  validationErrors?: ValidationError[];
+}
