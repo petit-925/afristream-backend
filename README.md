@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Afristream Backend
 
 Node.js + TypeScript + Express + MySQL (mysql2) modular backend serving both Afristream (public) and Afristream Dashboard (admin) via a single versioned API.
@@ -43,3 +44,6 @@ API will be available at `http://localhost:5000`. Health check: `/health`.
 - Use roles and permissions in auth middleware to gate admin routes.
 - Add further modules (portfolio, testimonials, blog, downloads, messages, clients) following the same pattern.
 - Configure Paystack secrets and webhook to update orders.
+=======
+# afristream-backend
+>>>>>>> 3e4a835280d3c6c0aed33f808d2a323d1ec4fd5d
