@@ -1,2 +1,1 @@
-export { pool } from '../config/database';
-
+export { default as pool } from '../config/database';

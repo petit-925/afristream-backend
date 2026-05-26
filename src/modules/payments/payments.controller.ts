@@ -23,7 +23,7 @@ export async function verifyPaystack(req: Request, res: Response) {
     const { reference } = req.params as { reference: string };
     if (!reference) return res.status(400).json({ message: 'Missing reference' });
 
-    const secret = env.PAYSTACK_SECRET_KEY;
+    const secret = env.PAYSTACK_SECRET;
     if (!secret) throw AppError.internal('PAYSTACK_SECRET_KEY not configured');
 
     const resp = await fetch(`https://api.paystack.co/transaction/verify/${encodeURIComponent(reference)}`, {
