@@ -143,7 +143,10 @@ async function setupDatabase() {
     }
 }
 // Run setup if this file is executed directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+// Avoid using `import.meta` to remain compatible with TS compiler module settings
+const scriptPath = process.argv[1] || '';
+const isMain = scriptPath.endsWith('/setup-database.js') || scriptPath.endsWith('\\setup-database.js') || scriptPath.endsWith('/setup-database.ts') || scriptPath.endsWith('\\setup-database.ts');
+if (isMain) {
     setupDatabase()
         .then(() => {
         console.log('✅ Setup completed');
